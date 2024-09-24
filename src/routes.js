@@ -14,6 +14,28 @@ routes.get("/", (req, res) => {
 	});
 });
 
+routes.get("/laptops", (req, res) => {
+	const sql = "SELECT * FROM products WHERE category_id = 2;";
+	connection.query(sql, (err, result) => {
+		if (err) {
+			console.log(err);
+		} else {
+			res.status(200).json(result);
+		}
+	});
+});
+
+routes.get("/phones", (req, res) => {
+	const sql = "SELECT * FROM products WHERE category_id = 1;";
+	connection.query(sql, (err, result) => {
+		if (err) {
+			console.log(err);
+		} else {
+			res.status(200).json(result);
+		}
+	});
+});
+
 routes.post("/add", (req, res) => {
 	const { product_name, price, category_id } = req.body;
 	const sql =
